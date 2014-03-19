@@ -24,20 +24,20 @@ With the increased interactivity we are expecting from web applications, it's no
 
 A solution to the problem that does not interfere with how we implement the application and its request handling is by configuring the http load balancer to perform session affinity on Seaside's session key url parameter (i.e. `_s`). This will ensure that subsequent requests for the same Seaside session are queued to the same VM by the load balancer. Most HTTP web servers have some mechanism to configure load balancing with session affinity on a url parameter. In [nginx](http://nginx.org/) the [HttpUpstreamRequestHashModule](http://wiki.nginx.org/HttpUpstreamRequestHashModule) external module provides us with this ability. The relevant configuration snippet that establishes session affinity is:
 
->upstream seaside {<br />
-&nbsp; &nbsp; &nbsp; &nbsp; hash $arg__s;<br />
-&nbsp; &nbsp; &nbsp; &nbsp; server localhost:9001;<br />
-&nbsp; &nbsp; &nbsp; &nbsp; server localhost:9002;<br />
-&nbsp; &nbsp; &nbsp; &nbsp; server localhost:9003;<br />
-&nbsp; &nbsp; &nbsp; &nbsp; hash_again 2;<br />
-}
+	upstream seaside {
+		hash $arg__s;
+      	server localhost:9001;
+		server localhost:9002;
+		server localhost:9003;
+		hash_again 2;
+	}
 
-> server {<br />
-&nbsp; &nbsp; &nbsp; &nbsp; server_name &nbsp;myapp.some.domain;<br />
-&nbsp; &nbsp; &nbsp; &nbsp; location / {<br />
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; include fastcgi_params;<br />
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; fastcgi_pass seaside;<br />
-&nbsp; &nbsp; &nbsp; &nbsp; }<br />
-}
+	server {
+  		server_name myapp.some.domain;
+		location / {
+			include fastcgi_params;
+			fastcgi_pass seaside;
+		}
+	}
 
 Now, there are caveats with this particular implementation of load balancing. First of all, all initial requests (i.e. those without a session key) are handled by the same VM. This causes one VM to be responsible for the reachability of your application. Next, if the hash function's distribution is bad, you can end up with idle VMS while others are overloaded, and there is no way that changes unless application sessions are stopped. Finally, a VM that died will be noticed by a percentage of your users.
