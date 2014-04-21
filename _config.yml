@@ -1,3 +1,4 @@
 auto: true
+markdown: kramdown
 pygments: true
 permalink: /blog/:title
