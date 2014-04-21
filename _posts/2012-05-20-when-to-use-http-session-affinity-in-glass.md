@@ -1,13 +1,16 @@
 ---
 layout: post
 title: When to use http session affinity in GLASS
-description: ""
-category: null
+category: Coding
 tags: []
+year: 2012
+month: 3
+day: 8
 published: true
+summary: When to use http session affinity in GLASS
+image: post_two.jpg
 ---
 
-{% include JB/setup %}
 [Seaside](http://www.seaside.st/) applications that deploy in [GLASS](http://gemstonesoup.wordpress.com/category/glass/) will almost always run using multiple Gemstone VMs to put the parallel request processing capability of the platform to use. The standard GLASS setup of 3 VMs already brings you a long way in the scaling of your web application. Because of the way Seaside works in GLASS, incoming requests can be freely distributed to any VM, regardless of the Seaside session they are related to. This makes load balancing in GLASS easy, without the need to [coordinate request handling](http://book.seaside.st/book/advanced/deployment/deployment-apache/mod-proxy-balancer) or install any kind of session affinity.
 
 Although I think this is a brilliant achievement, the way this works in GLASS can cause some performance problems when you are not careful with the way your application triggers requests. In this post, I will explain when and why this happens and how we solved it (this post's title might already give you a clue ;-).

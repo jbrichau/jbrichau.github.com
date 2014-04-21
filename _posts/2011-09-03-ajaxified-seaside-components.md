@@ -1,11 +1,15 @@
 ---
 layout: post
-title: "Ajaxified Seaside Components"
-description: ""
-category: 
+title: Ajaxified Seaside Components
+category: Coding
 tags: []
+year: 2012
+month: 3
+day: 8
+published: true
+summary: Ajaxified Seaside Components
+image: post_one.jpg
 ---
-{% include JB/setup %}
 
 <div style="text-align: justify;">
 <span class="Apple-style-span" style="font-family: inherit;">The&nbsp;<a href="http://www.seaside.st/">Seaside</a>&nbsp;sprint after the&nbsp;<a href="http://www.esug.org/">ESUG</a>&nbsp;conference in Edinburgh was just the perfect moment for implementing some of the ideas that have been floating around in my mind. Here's&nbsp;<a href="http://lists.squeakfoundation.org/pipermail/seaside/2011-June/026850.html">one I posted on the seaside mailinglist</a>, about which&nbsp;I was reminded by Nick Ager at the beginning of the sprint. Thanks for the reminder, Nick! ;-)</span></div>
