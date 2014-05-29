@@ -2,12 +2,12 @@
 layout: post
 title: When to use http session affinity in GLASS
 category: Coding
-tags: []
+tags: [Seaside,Smalltalk,Gemstone]
 year: 2012
 month: 3
 day: 8
 published: true
-summary: When to use http session affinity in GLASS
+summary: Using session affinity for Seaside GLASS applications has an effect on the performance of your application.
 image: post_two.jpg
 ---
 

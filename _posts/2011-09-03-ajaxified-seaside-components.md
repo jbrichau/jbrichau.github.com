@@ -2,12 +2,12 @@
 layout: post
 title: Ajaxified Seaside Components
 category: Coding
-tags: []
+tags: [Seaside,Smalltalk]
 year: 2012
 month: 3
 day: 8
 published: true
-summary: Ajaxified Seaside Components
+summary: An experiment on automated per-component ajax updates for Seaside applications
 image: post_one.jpg
 ---
 
