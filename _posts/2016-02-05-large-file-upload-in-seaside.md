@@ -12,12 +12,11 @@ published: true
 summary: Using the Nginx file upload module to support (large) file uploads in Seaside web applications
 image: post_four.jpg
 ---
-
 Uploading files in a Seaside web application is [easy](http://book.seaside.st/book/fundamentals/forms/fileupload). Unfortunately, there is a drawback to the easiness: entire files are loaded into the Seaside backend's memory because an instance of `WAFile` contains the entire file's contents. In many situations, loading the file contents in the Seaside backend's memory is not necessary (for example, if the file only needs to be stored on disk) or even impossible (e.g. in the case of extremely large files).
 
 This post details an extension to Seaside that works together with the [NGINX](http://www.nginx.org) front-end web server and its [file upload module](https://www.nginx.com/resources/wiki/modules/upload/). The uploaded file is stored to disk and NGINX subsequently only passes a file reference to the Seaside backend. This off-loads the heavy lifting to the web server and prevents memory overload in the Seaside backend while still keeping close to the ease of implementation of "traditional" file uploads in Seaside.
 
-Many of you will notice that this solution is based on work by Nick Ager, whose blog post has unfortunately disappeared from the web. Since there have been several questions on the [Seaside mailinglist](http://lists.squeakfoundation.org/cgi-bin/mailman/listinfo/seaside) on this topic, I thought it would a good idea to revisit our implementation (which has been working in production for years now) and make it usable as a separate Seaside extension.
+Many of you will notice that this solution is based on work by Nick Ager, whose blog post has unfortunately disappeared from the web. Since there have been several questions on the [Seaside mailinglist](http://lists.squeakfoundation.org/cgi-bin/mailman/listinfo/seaside) on this topic, I thought it would a good idea to revisit our implementation (which has been working in production for years now) and make it usable as a separate Seaside extension. UPDATE: [Nick's blog post](http://nickager.com/blog/2011/07/01/File-upload-using-Nginx-and-Seaside) has reappeared.
 
 ## Seaside-ExternalFileUpload
 The [Seaside](http://www.seaside.st/) extension to support large file uploads is in the optional [Seaside-ExternalFileUpload package](http://www.smalltalkhub.com/#!/~Seaside/Seaside32/packages/Seaside-ExternalFileUpload). At the time of writing of this post, you need to load this package manually in your Seaside3.x image. The package should work well in 3.0, 3.1 and 3.2.
