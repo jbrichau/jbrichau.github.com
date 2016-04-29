@@ -12,6 +12,7 @@ published: true
 summary: Using the Nginx file upload module to support (large) file uploads in Seaside web applications
 image: post_four.jpg
 ---
+
 Uploading files in a Seaside web application is [easy](http://book.seaside.st/book/fundamentals/forms/fileupload). Unfortunately, there is a drawback to the easiness: entire files are loaded into the Seaside backend's memory because an instance of `WAFile` contains the entire file's contents. In many situations, loading the file contents in the Seaside backend's memory is not necessary (for example, if the file only needs to be stored on disk) or even impossible (e.g. in the case of extremely large files).
 
 This post details an extension to Seaside that works together with the [NGINX](http://www.nginx.org) front-end web server and its [file upload module](https://www.nginx.com/resources/wiki/modules/upload/). The uploaded file is stored to disk and NGINX subsequently only passes a file reference to the Seaside backend. This off-loads the heavy lifting to the web server and prevents memory overload in the Seaside backend while still keeping close to the ease of implementation of "traditional" file uploads in Seaside.
